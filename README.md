@@ -5,6 +5,8 @@ An enterprise-grade **Data Visualization** dashboard and relational data model b
 
 This project simulates a biomanufacturing execution environment—leveraging comprehensive **Data Visualization** techniques to track key bioprocess parameters (Dissolved Oxygen, pH, Temperature, and Biomass accumulation) across 48-hour fermentation runs with automated Statistical Process Control (SPC) visual alerts.
 
+![Bioprocess Fermentation Dashboard Preview](Screenshot%20(530).png)
+
 ---
 
 ## Project Overview & Data Visualization Strategy
