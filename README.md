@@ -19,19 +19,24 @@ This project demonstrates an end-to-end data pipeline and **Data Visualization**
 
 ---
 
-##  Repository & Data Architecture
+## Data Visualization Architecture & Pipeline
 
-The workbook is structured into a normalized 4-tab model following database design best practices, feeding directly into the top-layer **Data Visualization** interface:
-
-```text
-[ Dim_Batch_Master ] ────────┐
-                             │ (1:N Relational Link)
-                             ▼
-[ Dim_Control_Limits ] ──> [ Fact_Batch_Telemetry ] 
-                                  │
-                                  ▼ (Dynamic FILTER Engine)
-                           [ Dashboard / Data Visualization Layer ]
-                             ├── Dynamic Helper Range (J6:N14)
-                             ├── Executive KPI Cards & MAXIFS
-                             ├── Dual-Axis Combo Chart Visuals
-                             └── SPC Conditional Alert Indicator (H1)
+```mermaid
+graph TD
+    A[Raw Batch Telemetry & Master Data] -->|Import & Load| B[(Fact_Batch_Telemetry Table)]
+    
+    subgraph Data_Architecture ["Relational Data Architecture Backend"]
+        C[Dim_Batch_Master] -->|1:N Relationship| B
+        D[Dim_Control_Limits] -.->|Validation Rules| B
+    end
+    
+    B -->|Dynamic FILTER & XLOOKUP Formula| E[Dashboard Control Cell B1]
+    
+    subgraph Data_Visualization ["Executive Data Visualization Layer"]
+        E --> F[Dynamic Helper Range J6:N14]
+        F --> G[Peak Biomass & Progress KPI Cards]
+        F --> H[Dual-Axis Combo Chart Visuals]
+        F --> I[SPC Conditional Alert Indicator H1]
+    end
+    
+    Data_Visualization --> J[Interactive Data Visualization Presentation]
